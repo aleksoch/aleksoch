@@ -1,0 +1,162 @@
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+
+app.use(express.static("."));
+
+app.get('/', function (req, res) {
+    res.redirect('index.html');
+});
+
+server.listen(3000);
+
+ matrix = []
+function generate(a, gr, grEat, mox,  bag, baga, moxa ) {
+    for (let i = 0; i < a; i++) {
+        matrix.push([])
+        for (let j = 0; j < a; j++) {
+
+            matrix[i].push(0)
+        }
+    }
+
+    for (let i = 0; i < gr; i++) {
+        let x = Math.floor(Math.random() * a)
+        let y = Math.floor(Math.random() * a)
+        if (matrix[x][y] == 0) {
+
+            matrix[x][y] = 1
+        }
+    }
+
+    for (let i = 0; i < grEat; i++) {
+        let x = Math.floor(Math.random() * a)
+        let y = Math.floor(Math.random() * a)
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 2
+        }
+    }
+
+    for (let i = 0; i < mox; i++) {
+        let x = Math.floor(Math.random() * a)
+        let y = Math.floor(Math.random() * a)
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 3
+        }
+    }
+    for (let i = 0; i < moxa; i++) {
+        let x = Math.floor(Math.random() * a)
+        let y = Math.floor(Math.random() * a)
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 6
+        }
+    }
+    for (let i = 0; i < bag; i++) {
+        let x = Math.floor(Math.random() * a)
+        let y = Math.floor(Math.random() * a)
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 4
+        }
+    }
+    for (let i = 0; i < baga; i++) {
+        let x = Math.floor(Math.random() * a)
+        let y = Math.floor(Math.random() * a)
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 5
+        }
+    }
+    io.sockets.emit("send matrix", matrix);
+
+}
+
+generate(80, 220, 400, 5, 40, 40, 5)
+
+grassArr = [];
+xotakerArr = [];
+moxesArr = [];
+moxetArr = [];
+bagamotArr = [];
+bagamolArr = [];
+
+var Grass = require("./Grass")
+var Xotaker = require("./Xotaker")
+var Moxes = require("./Moxes")
+var Bagamol = require("./Bagamol")
+var BagamolA = require("./BagamolA")
+var MoxesA = require("./MoxesA")
+
+
+function createObjects() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] == 1) {
+                var gr = new Grass(x, y)
+                grassArr.push(gr)
+            }
+            else if (matrix[y][x] == 2) {
+                var xt = new Xotaker(x, y)
+                xotakerArr.push(xt)
+            }
+            else if (matrix[y][x] == 3) {
+                var sd = new Moxes(x, y)
+                moxetArr.push(sd)
+            }
+            else if (matrix[y][x] == 4) {
+                var uj = new Bagamol(x, y)
+                bagamotArr.push(uj)
+            }
+            else if (matrix[y][x] == 5) {
+                var hj = new BagamolA(x, y)
+                bagamolArr.push(hj)
+            }
+            else if (matrix[y][x] == 6) {
+                var fg = new MoxesA(x, y)
+                moxesArr.push(fg)
+            }
+        }
+    }
+    io.sockets.emit("send matrix", matrix);
+
+}
+
+function game() {
+    console.log(moxetArr);
+    for (let i in grassArr) {
+        grassArr[i].mult()
+    }
+    for (let i in xotakerArr) {
+        xotakerArr[i].eat()
+        xotakerArr[i].move()
+        xotakerArr[i].mult()
+        xotakerArr[i].die()
+    }
+    for (let i in moxesArr){
+        moxesArr[i].mult()
+        moxesArr[i].eat()
+    }
+    for (let i in moxetArr){
+        moxetArr[i].eat()
+       
+
+    }
+    for (let i in bagamolArr) {
+        bagamolArr[i].mult()
+        bagamolArr[i].eat()
+       
+
+    }
+    for (let i in bagamotArr) {
+        bagamotArr[i].eat()
+      
+    }
+    
+    io.sockets.emit("send matrix", matrix);
+
+}
+
+setInterval(game, 50)
+
+io.on('connection', function (socket) {
+    createObjects()
+})
