@@ -32,6 +32,7 @@ module.exports = class Moxes extends Tcnox {
   
     eat() {
       var food = this.random(2);
+      var food2 = this.random(7);
       var food1 = this.random(1)
   
       if (food) {
@@ -60,6 +61,23 @@ module.exports = class Moxes extends Tcnox {
         for (var i in grassArr) {
           if (grassArr[i].x == newX && grassArr[i].y == newY) {
             grassArr.splice(i, 1);
+          }
+        }
+  
+        this.x = newX;
+        this.y = newY;
+        this.energy++;
+  
+      }
+      if (food2) {
+        var newX = food2[0];
+        var newY = food2[1];
+        matrix[newY][newX] = 3;
+        matrix[this.y][this.x] = 0;
+  
+        for (var i in grassArr) {
+          if (xotaketArr[i].x == newX && xotaketArr[i].y == newY) {
+            xotaketArr.splice(i, 1);
           }
         }
   

@@ -95,6 +95,9 @@ function draww(matrix) {
                 fill("green");
             }
             else if (matrix[y][x] == 2) {
+                fill("#B0AD00");
+            }
+            else if (matrix[y][x] == 7) {
                 fill("yellow");
             }
             else if (matrix[y][x] == 0) {

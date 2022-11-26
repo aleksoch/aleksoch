@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 server.listen(3000);
 
  matrix = []
-function generate(a, gr, grEat, mox,  bag, baga, moxa ) {
+function generate(a, gr, grEat, mox,  bag, baga, moxa, grEata ) {
     for (let i = 0; i < a; i++) {
         matrix.push([])
         for (let j = 0; j < a; j++) {
@@ -35,6 +35,14 @@ function generate(a, gr, grEat, mox,  bag, baga, moxa ) {
         let y = Math.floor(Math.random() * a)
         if (matrix[x][y] == 0) {
             matrix[x][y] = 2
+        }
+    }
+
+    for (let i = 0; i < grEata; i++) {
+        let x = Math.floor(Math.random() * a)
+        let y = Math.floor(Math.random() * a)
+        if (matrix[x][y] == 0) {
+            matrix[x][y] = 7
         }
     }
 
@@ -70,10 +78,11 @@ function generate(a, gr, grEat, mox,  bag, baga, moxa ) {
 
 }
 
-generate(80, 220, 400, 5, 40, 40, 5)
+generate(80, 220, 200, 5, 40, 40, 5, 200)
 
 grassArr = [];
 xotakerArr = [];
+xotaketArr = [];
 moxesArr = [];
 moxetArr = [];
 bagamotArr = [];
@@ -81,6 +90,7 @@ bagamolArr = [];
 
 var Grass = require("./Grass")
 var Xotaker = require("./Xotaker")
+var XotakerA = require("./XotakerA")
 var Moxes = require("./Moxes")
 var Bagamol = require("./Bagamol")
 var BagamolA = require("./BagamolA")
@@ -97,6 +107,10 @@ function createObjects() {
             else if (matrix[y][x] == 2) {
                 var xt = new Xotaker(x, y)
                 xotakerArr.push(xt)
+            }
+            else if (matrix[y][x] == 7) {
+                var xta = new XotakerA(x, y)
+                xotakerArr.push(xta)
             }
             else if (matrix[y][x] == 3) {
                 var sd = new Moxes(x, y)
@@ -130,6 +144,11 @@ function game() {
         xotakerArr[i].move()
         xotakerArr[i].mult()
         xotakerArr[i].die()
+    }
+    for (let i in xotaketArr) {
+        xotaketArr[i].eat()
+        xotaketArr[i].move()
+        xotaketArr[i].die()
     }
     for (let i in moxesArr){
         moxesArr[i].mult()

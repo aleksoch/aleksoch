@@ -2,7 +2,7 @@ var Tcnox = require("./Tcnox")
 module.exports = class Xotaker extends Tcnox{
     constructor(x, y) {
       super(x,y);
-      this.energy = 5;
+      this.energy = 6;
 
     }
     random(ch){
@@ -11,16 +11,7 @@ module.exports = class Xotaker extends Tcnox{
       return found[result];
   }
   
-    mult() {
-      var empty = this.random(0);
-      if (empty && this.energy > 10) {
-        var newX = empty[0];
-        var newY = empty[1];
-        matrix[newY][newX] = 2;
-        var xt = new Xotaker(newX, newY);
-        xotakerArr.push(xt);
-      }
-    }
+   
   
     move() {
       var empty = this.random(0);
@@ -60,8 +51,8 @@ module.exports = class Xotaker extends Tcnox{
       if (this.energy <= 0) {
         matrix[this.y][this.x] = 0;
         for (var i in xotakerArr) {
-          if (xotakerArr[i].x == this.x && xotakerArr[i].y == this.y) {
-            xotakerArr.splice(i, 1);
+          if (xotaketArr[i].x == this.x && xotaketArr[i].y == this.y) {
+            xotaketArr.splice(i, 1);
           }
         }
       }
