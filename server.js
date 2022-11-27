@@ -8,11 +8,9 @@ app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
 });
-
 server.listen(3000);
-
- matrix = []
-function generate(a, gr, grEat, mox,  bag, baga, moxa, grEata ) {
+matrix = []
+function generate(a, gr, grEat, mox, bag, baga, moxa, grEata) {
     for (let i = 0; i < a; i++) {
         matrix.push([])
         for (let j = 0; j < a; j++) {
@@ -106,7 +104,8 @@ function createObjects() {
             }
             else if (matrix[y][x] == 2) {
                 var xt = new Xotaker(x, y)
-                xotakerArr.push(xt)
+                xotaketArr.push(xt)
+                
             }
             else if (matrix[y][x] == 7) {
                 var xta = new XotakerA(x, y)
@@ -135,7 +134,7 @@ function createObjects() {
 }
 
 function game() {
-    console.log(moxetArr);
+
     for (let i in grassArr) {
         grassArr[i].mult()
     }
@@ -150,26 +149,26 @@ function game() {
         xotaketArr[i].move()
         xotaketArr[i].die()
     }
-    for (let i in moxesArr){
+    for (let i in moxesArr) {
         moxesArr[i].mult()
         moxesArr[i].eat()
     }
-    for (let i in moxetArr){
+    for (let i in moxetArr) {
         moxetArr[i].eat()
-       
+
 
     }
     for (let i in bagamolArr) {
         bagamolArr[i].mult()
         bagamolArr[i].eat()
-       
+
 
     }
     for (let i in bagamotArr) {
         bagamotArr[i].eat()
-      
+
     }
-    
+
     io.sockets.emit("send matrix", matrix);
 
 }

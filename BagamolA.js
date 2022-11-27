@@ -12,13 +12,22 @@ module.exports = class BagamolA extends Tcnox {
       let result = Math.floor(Math.random()*found.length)
       return found[result];
   }
+  random1(num1,num2){
+    let res = Math.floor(Math.random())
+    if(res==0){
+      return num1
+    }
+    else if(res==1){
+      return num2
+    }
+   }
     mult() {
       
       var empty = this.random(0);  
       if (empty && this.energy > 15) { 
         let newX = empty[0];
         let newY = empty[1];
-        matrix[newY][newX] = 5;
+        matrix[newY][newX] = this.random1(4,5);
         let uj = new Bagamol(newX, newY);
         let hj = new BagamolA(newX, newY);
         bagamotArr.push(uj);

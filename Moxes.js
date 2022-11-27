@@ -75,7 +75,7 @@ module.exports = class Moxes extends Tcnox {
         matrix[newY][newX] = 3;
         matrix[this.y][this.x] = 0;
   
-        for (var i in grassArr) {
+        for (var i in xotaketArr) {
           if (xotaketArr[i].x == newX && xotaketArr[i].y == newY) {
             xotaketArr.splice(i, 1);
           }

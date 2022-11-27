@@ -49,8 +49,10 @@ module.exports = class Xotaker extends Tcnox{
   
     die() {
       if (this.energy <= 0) {
+        //  console.log("xotaketArr====>", xotaketArr)
         matrix[this.y][this.x] = 0;
         for (var i in xotakerArr) {
+          
           if (xotaketArr[i].x == this.x && xotaketArr[i].y == this.y) {
             xotaketArr.splice(i, 1);
           }

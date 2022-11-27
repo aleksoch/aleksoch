@@ -11,15 +11,24 @@ module.exports = class MoxesA extends Tcnox {
       let result = Math.floor(Math.random()*found.length)
       return found[result];
   }
+  random1(num1,num2){
+    let res = Math.floor(Math.random())
+    if(res==0){
+      return num1
+    }
+    else if(res==1){
+      return num2
+    }
+   }
     mult() {
       
       var empty = this.random(0);
 
-      if (empty && this.energy > 15) {
+      if (empty && this.energy > 10) {
         
         let newX = empty[0];
         let newY = empty[1];
-        matrix[newY][newX] = 6;
+        matrix[newY][newX] = this.random(3,6);
         let xt = new Moxes(newX, newY);
         let fg = new MoxesA(newX, newY);
         moxetArr.push(xt);
@@ -91,7 +100,7 @@ module.exports = class MoxesA extends Tcnox {
       else {
         this.move();
         this.energy--;
-        if (this.energy <= 2) {
+        if (this.energy <= -8) {
           this.die();
         }
       }
