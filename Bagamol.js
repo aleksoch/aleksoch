@@ -2,7 +2,7 @@ var Tcnox = require("./Tcnox")
 module.exports = class Bagamol extends Tcnox {
     constructor(x, y) {
       super(x,y);
-      this.energy = 11;
+      this.energy = 3;
 
     }
       

@@ -51,6 +51,9 @@ function draww(matrix) {
                     fill("#816919");
                 }
             }
+               // else if (matrix[y][x] == 8){
+                //    fill("#33FFF0")
+               // } 
 
                 else if (matrix[y][x] == 2) {
                     fill("yellow");

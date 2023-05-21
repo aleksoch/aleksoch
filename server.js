@@ -8,7 +8,7 @@ app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
 });
-server.listen(3000);
+server.listen(3001);
 matrix = []
 function generate(a, gr, grEat, mox, bag, baga, moxa, grEata) {
     for (let i = 0; i < a; i++) {
@@ -23,7 +23,6 @@ function generate(a, gr, grEat, mox, bag, baga, moxa, grEata) {
         let x = Math.floor(Math.random() * a)
         let y = Math.floor(Math.random() * a)
         if (matrix[x][y] == 0) {
-
             matrix[x][y] = 1
         }
     }
@@ -72,6 +71,8 @@ function generate(a, gr, grEat, mox, bag, baga, moxa, grEata) {
             matrix[x][y] = 5
         }
     }
+    
+
     io.sockets.emit("send matrix", matrix);
 
 }
@@ -86,6 +87,7 @@ moxetArr = [];
 bagamotArr = [];
 bagamolArr = [];
 
+
 var Grass = require("./Grass")
 var Xotaker = require("./Xotaker")
 var XotakerA = require("./XotakerA")
@@ -93,6 +95,7 @@ var Moxes = require("./Moxes")
 var Bagamol = require("./Bagamol")
 var BagamolA = require("./BagamolA")
 var MoxesA = require("./MoxesA")
+
 
 
 function createObjects() {
@@ -127,6 +130,7 @@ function createObjects() {
                 var fg = new MoxesA(x, y)
                 moxesArr.push(fg)
             }
+            
         }
     }
     io.sockets.emit("send matrix", matrix);
@@ -138,6 +142,7 @@ function game() {
     for (let i in grassArr) {
         grassArr[i].mult()
     }
+    
     for (let i in xotakerArr) {
         xotakerArr[i].eat()
         xotakerArr[i].move()

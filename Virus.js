@@ -9,7 +9,7 @@ module.exports = class Virus extends Tcnox{
         if (empty) {
           var newX = empty[0];
           var newY = empty[1];
-          matrix[newY][newX] = 404;
+          matrix[newY][newX] = 8;
           matrix[this.y][this.x] = 0;
     
           this.x = newX;
@@ -27,7 +27,7 @@ module.exports = class Virus extends Tcnox{
         if (food) {
           var newX = food[0];
           var newY = food[1];
-          matrix[newY][newX] = 404;
+          matrix[newY][newX] = 8;
           matrix[this.y][this.x] = 0;
     
           for (var i in xotakerArr) {
@@ -44,7 +44,7 @@ module.exports = class Virus extends Tcnox{
         if (food5) {
           var newX = food5[0];
           var newY = food5[1];
-          matrix[newY][newX] = 404;
+          matrix[newY][newX] = 8;
           matrix[this.y][this.x] = 0;
     
           for (var i in xotakerArr) {
@@ -61,7 +61,7 @@ module.exports = class Virus extends Tcnox{
         if (food4) {
           var newX = food4[0];
           var newY = food4[1];
-          matrix[newY][newX] = 404;
+          matrix[newY][newX] = 8;
           matrix[this.y][this.x] = 0;
     
           for (var i in xotakerArr) {
@@ -78,7 +78,7 @@ module.exports = class Virus extends Tcnox{
         if (food6) {
           var newX = food6[0];
           var newY = food6[1];
-          matrix[newY][newX] = 404;
+          matrix[newY][newX] = 8;
           matrix[this.y][this.x] = 0;
     
           for (var i in xotakerArr) {
@@ -95,7 +95,7 @@ module.exports = class Virus extends Tcnox{
         if (food3) {
           var newX = food3[0];
           var newY = food3[1];
-          matrix[newY][newX] = 404;
+          matrix[newY][newX] = 8;
           matrix[this.y][this.x] = 0;
     
           for (var i in xotakerArr) {
@@ -112,7 +112,7 @@ module.exports = class Virus extends Tcnox{
         if (food1) {
           var newX = food1[0];
           var newY = food1[1];
-          matrix[newY][newX] = 404;
+          matrix[newY][newX] = 8;
           matrix[this.y][this.x] = 0;
     
           for (var i in grassArr) {
@@ -129,7 +129,7 @@ module.exports = class Virus extends Tcnox{
         if (food2) {
           var newX = food2[0];
           var newY = food2[1];
-          matrix[newY][newX] = 404;
+          matrix[newY][newX] = 8;
           matrix[this.y][this.x] = 0;
     
           for (var i in xotaketArr) {
@@ -143,4 +143,18 @@ module.exports = class Virus extends Tcnox{
           
         }
       }
+      mult() {
+        var empty = this.random(0);
+        this.multiply++;
+        if (empty && this.multiply > 5) {
+          var newX = empty[0];
+          var newY = empty[1];
+          matrix[newY][newX] = 8;
+          var newVIR = new Virus(newX, newY);
+          virusArr.push(newVIR);
+          this.multiply = 0;
+        }
+      }
+      
 }
+

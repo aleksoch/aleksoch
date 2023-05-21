@@ -4,7 +4,7 @@ var Bagamol = require("./Bagamol")
 module.exports = class BagamolA extends Tcnox {
     constructor(x, y) {
       super(x,y);
-      this.energy = 9;
+      this.energy = 1;
     }
   
     random(ch){
