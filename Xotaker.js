@@ -2,7 +2,7 @@ var Tcnox = require("./Tcnox")
 module.exports = class Xotaker extends Tcnox{
     constructor(x, y) {
       super(x,y);
-      this.energy = 6;
+      this.energy = 8;
 
     }
     random(ch){
@@ -51,7 +51,7 @@ module.exports = class Xotaker extends Tcnox{
       if (this.energy <= 0) {
         //  console.log("xotaketArr====>", xotaketArr)
         matrix[this.y][this.x] = 0;
-        for (var i in xotakerArr) {
+        for (var i in xotaketArr) {
           
           if (xotaketArr[i].x == this.x && xotaketArr[i].y == this.y) {
             xotaketArr.splice(i, 1);

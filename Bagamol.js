@@ -2,7 +2,7 @@ var Tcnox = require("./Tcnox")
 module.exports = class Bagamol extends Tcnox {
     constructor(x, y) {
       super(x,y);
-      this.energy = 3;
+      this.energy = 14;
 
     }
       
@@ -101,10 +101,14 @@ module.exports = class Bagamol extends Tcnox {
     }
   
     die() {
-      matrix[this.y][this.x] = 0;
-      for (var i in bagamotArr) {
-        if (bagamotArr[i].x == this.x && bagamotArr[i].y == this.y) {
-          bagamotArr.splice(i, 1);
+      if (this.energy <= 0) {
+        //  console.log("xotaketArr====>", xotaketArr)
+        matrix[this.y][this.x] = 0;
+        for (var i in bagamotArr) {
+          
+          if (bagamotArr[i].x == this.x && bagamotArr[i].y == this.y) {
+            bagamotArr.splice(i, 1);
+          }
         }
       }
     }

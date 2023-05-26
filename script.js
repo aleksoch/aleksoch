@@ -6,16 +6,16 @@ var side = 10;
 function setup() {
 
     noStroke()
-    createCanvas(700, 700)
+    createCanvas(80, 80)
     background('#acacac');
 }
-
 let automnargument = false;
 let automn = document.getElementById("automn");
 automn.addEventListener('click', function () {
     automnargument = true;
     summerArgument = false;
     winterargument = false;
+    garunargument = false;
 })
 let winterargument = false;
 let winter = document.getElementById("winter");
@@ -23,6 +23,7 @@ winter.addEventListener('click', function () {
     winterargument = true;
     summerArgument = false;
     automnargument = false;
+    garunargument = false;
 })
 let summerArgument = false;
 let summer = document.getElementById("summer");
@@ -30,6 +31,15 @@ summer.addEventListener('click', function () {
     winterargument = false;
     summerArgument = true;
     automnargument = false;
+    garunargument = false;
+})
+let garunargument = false;
+let garun = document.getElementById("garun");
+garun.addEventListener('click', function () {
+    automnargument = false;
+    summerArgument = false;
+    winterargument = false;
+    garunargument = true;
 })
 
 
@@ -49,6 +59,9 @@ function draww(matrix) {
                 }
                 if (automnargument === true) {
                     fill("#816919");
+                }
+                if(garunargument === true ){
+                    fill("#A2FF33")
                 }
             }
                // else if (matrix[y][x] == 8){

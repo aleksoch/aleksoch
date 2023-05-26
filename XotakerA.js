@@ -4,7 +4,7 @@ var Xotaker = require("./Xotaker")
 module.exports = class XotakerA extends Tcnox{
     constructor(x, y) {
       super(x,y);
-      this.energy = 5;
+      this.energy = 6;
 
     }
     random(ch){
@@ -24,7 +24,7 @@ module.exports = class XotakerA extends Tcnox{
   
     mult() {
       var empty = this.random(0);
-      if (empty && this.energy > 3) {
+      if (empty && this.energy > 9) {
         var newX = empty[0];
         var newY = empty[1];
         matrix[newY][newX] = this.random1(2,7);

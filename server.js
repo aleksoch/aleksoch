@@ -77,7 +77,7 @@ function generate(a, gr, grEat, mox, bag, baga, moxa, grEata) {
 
 }
 
-generate(80, 220, 200, 5, 40, 40, 5, 200)
+generate(80, 300, 2000, 5, 40, 40, 5, 200)
 
 grassArr = [];
 xotakerArr = [];
@@ -166,11 +166,13 @@ function game() {
     for (let i in bagamolArr) {
         bagamolArr[i].mult()
         bagamolArr[i].eat()
+        bagamolArr[i].die()
 
 
     }
     for (let i in bagamotArr) {
         bagamotArr[i].eat()
+        bagamotArr[i].die()
 
     }
 
@@ -183,3 +185,18 @@ setInterval(game, 50)
 io.on('connection', function (socket) {
     createObjects()
 })
+
+//server
+let arr=  [1,2,3,4,5]
+
+let obj={
+    1 : grassarr
+}
+
+socket.emit("chap", obj)
+
+//klient
+
+socket.on("chap", obj)
+
+
