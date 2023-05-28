@@ -28,10 +28,10 @@ module.exports = class BagamolA extends Tcnox {
         let newX = empty[0];
         let newY = empty[1];
         matrix[newY][newX] = this.random1(4,5);
-        let uj = new Bagamol(newX, newY);
-        let hj = new BagamolA(newX, newY);
-        bagamotArr.push(uj);
-        bagamolArr.push(hj);
+        let hj = new Bagamol(newX, newY);
+        let uj = new BagamolA(newX, newY);
+        bagamotArr.push(hj);
+        bagamolArr.push(uj);
         this.energy = 0
       }
 
@@ -60,7 +60,7 @@ module.exports = class BagamolA extends Tcnox {
     eat() {
       var food = this.random(2);
       var food1 = this.random(3);
-     
+      
 
   
       if (food) {
@@ -103,14 +103,14 @@ module.exports = class BagamolA extends Tcnox {
         this.move();
         
   
-        if (this.energy <= -1) {
+        if (this.energy <= 0) {
           this.die();
         }
       }
     }
     die() {
       if (this.energy <= 0) {
-        //  console.log("xotaketArr====>", xotaketArr)
+       
         matrix[this.y][this.x] = 0;
         for (var i in bagamolArr) {
           

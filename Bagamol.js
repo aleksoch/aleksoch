@@ -2,11 +2,9 @@ var Tcnox = require("./Tcnox")
 module.exports = class Bagamol extends Tcnox {
     constructor(x, y) {
       super(x,y);
-      this.energy = 10;//14
+      this.energy = 1;
 
     }
-      
-      
     random(ch){
       let found = this.chooseCell(ch);
       let result = Math.floor(Math.random()*found.length)
@@ -18,28 +16,39 @@ module.exports = class Bagamol extends Tcnox {
       var empty = this.random(0);
       
       this.energy--;
-      if (empty) {
-       
-  
-        var newX = empty[0];
-        var newY = empty[1];
-        matrix[newY][newX] = 4;
-        matrix[this.y][this.x] = 0;
-  
-        this.x = newX;
-        this.y = newY;
-        this.energy = 0
+
+
+      if(this.energy <=0){
+        this.die()
+        //console.log('dead')
       }
+      else{
+        //console.log('stillgoing')
+      }
+      // if (empty) {
+      //   var newX = empty[0];
+      //   var newY = empty[1];
+      //   matrix[newY][newX] = 4;
+      //   matrix[this.y][this.x] = 0;
   
-  
+      //   this.x = newX;
+      //   this.y = newY;
+      //   //this.energy = 0
+      // }
     }
   
     eat() {
       var food = this.random(2);
       var food1 = this.random(3);
-      var food2 = this.random(6);
+     var food2 = this.random(6);
   
-      if (food) {
+
+     if(this.energy < 0){
+      this.die();
+    }
+
+    else {
+           if (food) {
         var newX = food[0];
         var newY = food[1];
         matrix[newY][newX] = 4;
@@ -85,24 +94,19 @@ module.exports = class Bagamol extends Tcnox {
         this.y = newY;
         this.energy += 2;
       } 
-      
-      
-      
-      
-      
+
       else {
         this.move();
-        
-  
-        if (this.energy <= -1) {
-          this.die();
-        }
       }
+    }
+
+ 
     }
   
     die() {
+      //console.log('dead', this.energy)
       if (this.energy <= 0) {
-        //  console.log("xotaketArr====>", xotaketArr)
+        
         matrix[this.y][this.x] = 0;
         for (var i in bagamotArr) {
           
@@ -113,3 +117,6 @@ module.exports = class Bagamol extends Tcnox {
       }
     }
   }
+
+
+  

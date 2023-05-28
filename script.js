@@ -6,7 +6,7 @@ var side = 10;
 function setup() {
 
     noStroke()
-    createCanvas(80, 80)
+    createCanvas(80 * side, 80 * side)
     background('#acacac');
 }
 let automnargument = false;
@@ -105,3 +105,13 @@ function draww(matrix) {
 }
     socket.on('send matrix', draww);
 
+
+    socket.on("chap", function (obj){
+        document.getElementById("Grass").innerText = `Grass: ${obj.Grass}`;
+        document.getElementById("Grasseater").innerText = `Grasseater: ${obj.Grasseater}`;
+        document.getElementById("lizard").innerText = `lizard: ${obj.lizard}`;
+        document.getElementById("lizardGirl").innerText = `lizardGirl: ${obj.lizardGirl}`;
+        document.getElementById("GrasseaterGirl").innerText = `GrasseaterGirl: ${obj.GrasseaterGirl}`;
+        document.getElementById("Bogomol").innerText = `Bogomol: ${obj.Bogomol}`;
+        document.getElementById("BogomolGirl").innerText = `BogomolGirl: ${obj.BogomolGirl}`;
+    })

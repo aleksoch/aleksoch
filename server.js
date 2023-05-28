@@ -1,3 +1,4 @@
+var fs = require("fs")
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
@@ -10,6 +11,24 @@ app.get('/', function (req, res) {
 });
 server.listen(3001);
 matrix = []
+grassArr = [];
+xotakerArr = [];
+xotaketArr = [];
+moxesArr = [];
+moxetArr = [];
+bagamotArr = [];
+bagamolArr = [];
+
+
+var Grass = require("./Grass")
+var Xotaker = require("./Xotaker")
+var XotakerA = require("./XotakerA")
+var Moxes = require("./Moxes")
+var Bagamol = require("./Bagamol")
+var BagamolA = require("./BagamolA")
+var MoxesA = require("./MoxesA")
+
+
 function generate(a, gr, grEat, mox, bag, baga, moxa, grEata) {
     for (let i = 0; i < a; i++) {
         matrix.push([])
@@ -73,28 +92,12 @@ function generate(a, gr, grEat, mox, bag, baga, moxa, grEata) {
     }
     
 
-    io.sockets.emit("send matrix", matrix);
+    io.emit("send matrix", matrix);
 
 }
 
-generate(80, 300, 2000, 5, 40, 40, 5, 200)
+generate(80, 300, 200, 5, 1, 20, 5, 200)
 
-grassArr = [];
-xotakerArr = [];
-xotaketArr = [];
-moxesArr = [];
-moxetArr = [];
-bagamotArr = [];
-bagamolArr = [];
-
-
-var Grass = require("./Grass")
-var Xotaker = require("./Xotaker")
-var XotakerA = require("./XotakerA")
-var Moxes = require("./Moxes")
-var Bagamol = require("./Bagamol")
-var BagamolA = require("./BagamolA")
-var MoxesA = require("./MoxesA")
 
 
 
@@ -133,7 +136,7 @@ function createObjects() {
             
         }
     }
-    io.sockets.emit("send matrix", matrix);
+    io.emit("send matrix", matrix);
 
 }
 
@@ -166,37 +169,44 @@ function game() {
     for (let i in bagamolArr) {
         bagamolArr[i].mult()
         bagamolArr[i].eat()
-        bagamolArr[i].die()
+        // bagamolArr[i].die()
+        // bagamolArr[i].move()
 
 
     }
     for (let i in bagamotArr) {
-        bagamotArr[i].eat()
-        bagamotArr[i].die()
+        bagamotArr[i].move()
+        // bagamotArr[i].die()
+        // bagamotArr[i].move()
 
     }
 
-    io.sockets.emit("send matrix", matrix);
+    let obj =  {
+     Grass: grassArr.length,
+     Grasseater: xotaketArr.length,
+     lizard: moxetArr.length,
+     lizardGirl: moxesArr.length,
+     GrasseaterGirl: xotakerArr.length,
+     Bogomol: bagamotArr.length,
+     BogomolGirl: bagamolArr.length
+
+    }
+
+    io.emit("chap", obj)
+    fs.writeFileSync("chap.json", JSON.stringify(obj));
+
+    io.emit("send matrix", matrix);
 
 }
+
+createObjects()
 
 setInterval(game, 50)
 
-io.on('connection', function (socket) {
-    createObjects()
+
+io.on('connection', function(socket){
+    socket.emit("send matrix", matrix);
 })
 
-//server
-let arr=  [1,2,3,4,5]
-
-let obj={
-    1 : grassarr
-}
-
-socket.emit("chap", obj)
-
-//klient
-
-socket.on("chap", obj)
 
 
